@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import './Auth.css';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { registerUser } from '../../lib/registerUser';
 
 /* Registration Form Component */
 function RegistrationForm() {
     const [step, setStep] = useState(1);
     const [error, setError] = useState('');
+    const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
         first_name: '',
@@ -82,18 +83,20 @@ function RegistrationForm() {
 
         if (!validateCurrentStep()) return;
         
-        {/*Uses Object Destructuring to remove the confirm_password property. Crucial for the next step*/}
+        // Uses Object Destructuring to remove the confirm_password property.
         const { confirm_password, ...cleanData } = formData;
-        {/*Add the role_id. Very important for database compatibility etc*/}
+
+        // Add the role_id. Very important for database compatibility etc
         const enrichedData = { ...cleanData, role_id: 1 };
         
-        {/*Test. Paste data in the console*/}
+        // Test. Paste data in the console
         console.log('Final Data:', enrichedData);
 
-        // TODO: Send cleanData to backend (e.g., Supabase)
         const result = await registerUser(enrichedData);
         if (!result.success) {
             setError(result.message);
+        } else {
+            navigate('/signin');
         }
     };
 

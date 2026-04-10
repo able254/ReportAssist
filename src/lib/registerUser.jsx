@@ -4,7 +4,7 @@ export const registerUser = async (cleanData) => {
 
     try {
         
-        {/*Step 1: Sign Up User*/}
+        // Step 1: Sign Up User
         const { data, error } = await supabase.auth.signUp({
             email: cleanData.email,
             password: cleanData.password,
@@ -14,7 +14,7 @@ export const registerUser = async (cleanData) => {
             throw new Error(error.message);
         }
 
-        {/*Step 1.5: Handle Email Confirmation Case*/}
+        // Step 1.5: Handle Email Confirmation Case
         if (!data.user) {
             return {
                 success: false,
@@ -22,10 +22,10 @@ export const registerUser = async (cleanData) => {
             };
         }
         
-        {/*Grabs user id from the auth.users table*/}
+        // Grabs user id from the auth.users table
         const user = data.user;
 
-        {/*Step 2: Insert additional user data*/}
+        // Step 2: Insert additional user data
         const { error: dbError } = await supabase
             .from('users')
             .insert([
@@ -42,7 +42,7 @@ export const registerUser = async (cleanData) => {
         
         if (dbError) {
             throw new Error(dbError.message);
-        };
+        }
 
         return {
             success: true,
