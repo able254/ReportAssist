@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Auth.css';
 import { Link } from 'react-router-dom';
+import { registerUser } from '../../lib/registerUser';
 
 /* Registration Form Component */
 function RegistrationForm() {
@@ -76,16 +77,24 @@ function RegistrationForm() {
     };
 
     /* Final submission */
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (!validateCurrentStep()) return;
-
+        
+        {/*Uses Object Destructuring to remove the confirm_password property. Crucial for the next step*/}
         const { confirm_password, ...cleanData } = formData;
-
-        console.log('Final Data:', cleanData);
+        {/*Add the role_id. Very important for database compatibility etc*/}
+        const enrichedData = { ...cleanData, role_id: 1 };
+        
+        {/*Test. Paste data in the console*/}
+        console.log('Final Data:', enrichedData);
 
         // TODO: Send cleanData to backend (e.g., Supabase)
+        const result = await registerUser(enrichedData);
+        if (!result.success) {
+            setError(result.message);
+        }
     };
 
     return (
