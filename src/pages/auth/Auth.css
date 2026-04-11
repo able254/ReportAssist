@@ -84,6 +84,9 @@ h2 {
     cursor: pointer;
     width: 150px;
     border-color: transparent;
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .form-drop-down {

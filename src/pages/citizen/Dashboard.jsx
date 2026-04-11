@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { supabase } from '@services/supabaseClient.jsx';
+import { supabase } from '@services/supabaseClient';
 import './Citizen.css';
-import Header from '../../components/layout/Header.jsx';
+import Header from '../../components/layout/Header';
+import BotpressChat from '../../services/BotPressChat';
 
 function UserDashboard() {
     const [firstName, setFirstName] = useState('');
@@ -34,6 +35,9 @@ function UserDashboard() {
             <h2>Request for Case Information</h2>
             <h2>Request for a Meeting</h2>
             <h2>Chat With Police Officer</h2>
+
+            <BotpressChat />
+
         </>
     );
 };

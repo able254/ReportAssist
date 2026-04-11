@@ -14,8 +14,8 @@ function Header() {
             const { error } = await supabase.auth.signOut();
             if (error) throw error;
             
-            // Redirect to sign-in page after successful logout
-            navigate('/signin');
+            // Force a full page load on sign-out so state is fully reset.
+            window.location.href = '/signin';
         } catch (error) {
             console.error('Error signing out:', error.message);
         }
