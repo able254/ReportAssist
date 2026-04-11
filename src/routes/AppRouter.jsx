@@ -11,12 +11,9 @@ export const AppRouter = createBrowserRouter([
     
     { path: "/signin", element: <SignIn /> },
     { path: "/signup", element: <SignUp /> },
-    { path: "/user/dashboard", element: <UserDashboard />},
-    { path: "/officer/dashboard", element: <OfficerDashboard />},
-    { path: "/admin/dashboard", element: <AdminDashboard />},
-    { path: "/triage/dashboard", element: <TriageDashboard />},
-
-    //TODO: Activate ProtectedRoute after developing the actual UserDashboard
-    //path: "/user/dashboard", element: {<ProtectedRoute><UserDashboard/></ProtectedRoute></>}},
+    { path: "/user/dashboard", element: <ProtectedRoute><UserDashboard /></ProtectedRoute>},
+    { path: "/officer/dashboard", element: <ProtectedRoute><OfficerDashboard /></ProtectedRoute>},
+    { path: "/admin/dashboard", element: <ProtectedRoute><AdminDashboard /></ProtectedRoute>},
+    { path: "/triage/dashboard", element: <ProtectedRoute><TriageDashboard /></ProtectedRoute>},
     
 ]);

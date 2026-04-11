@@ -86,7 +86,7 @@ function RegistrationForm() {
         // Uses Object Destructuring to remove the confirm_password property.
         const { confirm_password, ...cleanData } = formData;
 
-        // Add the role_id. Very important for database compatibility etc
+        // Add the role_id for citizen. Very important for database compatibility etc
         const enrichedData = { ...cleanData, role_id: 1 };
         
         // Test. Paste data in the console

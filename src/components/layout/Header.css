@@ -1,0 +1,79 @@
+/*Dashboard Styles*/
+.dash-header {
+    background-color: #add7f6;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.logo {
+    width: 30px;
+    height: 35px;
+}
+
+.logo-holder {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    padding: 5px;
+}
+
+/*User Icon Menu*/
+.icon-user-options {
+    width: 25px;
+    height: 25px;
+}
+
+.icon-options {
+    width: 15px;
+    height: 15px;
+}
+
+.user-options-holder {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    padding: 5px;
+    border: 2px solid black;
+    border-radius: 50%;
+}
+
+.user-options-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    padding: 5px;
+    margin-right: 10px;
+}
+
+.user-options-content {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 170px;
+    z-index: 1;
+    top: 48px;
+    left: -128px;
+    padding: 2px;
+    border-radius: 8px;
+}
+
+.user-options-content a, button {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    border: 2px transparent;
+    border-radius: 10px;
+}
+
+.btn-signout { 
+    background-color: #ff0000;
+    color: #ffffff;
+}
+
+/*Change link background color on hover*/
+.user-options-content a:hover { background-color: #ddd; }
+/*Display the nav menu on hover*/
+.user-options-dropdown:hover .user-options-content {display: flex; flex-direction: column; gap: 3px;}

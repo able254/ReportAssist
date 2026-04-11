@@ -1,36 +1,34 @@
-import logo from '../../assets/images/report-assist-logo.png';
+import React, { useEffect, useState } from 'react';
+import { supabase } from '@services/supabaseClient.jsx';
 import './Citizen.css';
-
-{/*React Icons Imports*/}
-import { GiPowerButton } from 'react-icons/gi';
-import { FaRegUserCircle } from 'react-icons/fa';
-import { FaUser } from 'react-icons/fa';
+import Header from '../../components/layout/Header.jsx';
 
 function UserDashboard() {
+    const [firstName, setFirstName] = useState('');
+
+    useEffect(() => {
+        const getUserProfile = async () => {
+            const { data: { user } } = await supabase.auth.getUser();
+            if (user) {
+                const { data, error } = await supabase
+                    .from('users')
+                    .select('first_name')
+                    .eq('id', user.id)
+                    .single();
+                
+                if (data && !error) {
+                    setFirstName(data.first_name);
+                }
+            }
+        };
+        getUserProfile();
+    }, []);
+
     return (
         <>  
-            <nav className="dash-header">
-                <div className="logo-holder">
-                    <img className="logo" src={logo} alt="logo"/>
-                </div>
+            <Header />
 
-                {/*Drop down menu for User-Options*/}                
-                <div className="user-options-dropdown">
-                    <div className="user-options-holder">
-                        <FaUser className="icon-user-options"/>
-                    </div>
-                    
-                    {/*Content for my drop down menu*/}
-                    <div className="user-options-content">
-                        <a><FaRegUserCircle/> Account Settings</a>
-                        <a><GiPowerButton /> Log Out</a>
-                    </div>
-
-                </div>  
-                
-            </nav>
-
-            <h1>Welcome, User</h1>
+            <h1>Welcome, {firstName || 'User'}</h1>
             <h2>Make New Inquiry</h2>
             <h2>Report Crime</h2>
             <h2>Request for Case Information</h2>
