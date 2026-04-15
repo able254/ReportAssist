@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from '../../assets/images/report-assist-logo.png';
 import { supabase } from '@services/supabaseClient.jsx';
 import { Link, useNavigate } from 'react-router-dom';
@@ -8,6 +8,35 @@ import './Header.css';
 
 function Header() {
     const navigate = useNavigate();
+    const [dashboardPath, setDashboardPath] = useState('#');
+
+    useEffect(() => {
+        const fetchUserRole = async () => {
+            const { data: { user } } = await supabase.auth.getUser();
+            if (user) {
+                const { data: profile } = await supabase
+                    .from('users')
+                    .select('role_id')
+                    .eq('id', user.id)
+                    .maybeSingle();
+
+                if (profile) {
+                    const role = Number(profile.role_id);
+                    switch (role) {
+                        case 1: setDashboardPath('/user/dashboard'); break;
+                        case 2: setDashboardPath('/triage/dashboard'); break;
+                        case 3: setDashboardPath('/officer/dashboard'); break;
+                        case 4: setDashboardPath('/admin/dashboard'); break;
+                        default: setDashboardPath('/signin');
+                    }
+                }
+            } else {
+                setDashboardPath('/signin');
+            }
+        };
+
+        fetchUserRole();
+    }, []);
 
     const handleSignOut = async () => {
         try {
@@ -24,7 +53,9 @@ function Header() {
     return (
         <nav className="dash-header">
             <div className="logo-holder">
-                <img className="logo" src={logo} alt="logo"/>
+                <Link to={dashboardPath}>
+                    <img className="logo" src={logo} alt="logo"/>
+                </Link>
             </div>
 
             <div className="user-options-dropdown">
