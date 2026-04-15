@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from '../../assets/images/report-assist-logo.png';
 import { supabase } from '@services/supabaseClient.jsx';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { GiPowerButton } from 'react-icons/gi';
 import { FaRegUserCircle, FaUser } from 'react-icons/fa';
 import './Header.css';
@@ -33,7 +33,9 @@ function Header() {
                 </div>
                 
                 <div className="user-options-content">
-                    <a><FaRegUserCircle className="icon-option" /> Account Settings</a>
+                    <Link to="/account-settings" className="link-style">
+                        <FaRegUserCircle className="icon-option" /> Account Settings
+                    </Link>
                     <button className="btn-signout" onClick={handleSignOut}>
                         <GiPowerButton className="icon-option" /> Log Out
                     </button>

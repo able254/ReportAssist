@@ -73,6 +73,11 @@
     color: #ffffff;
 }
 
+.link-style {
+    text-decoration: none;
+    color: black;
+}
+
 /*Change link background color on hover*/
 .user-options-content a:hover { background-color: #ddd; }
 /*Display the nav menu on hover*/

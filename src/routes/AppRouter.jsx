@@ -6,6 +6,7 @@ import OfficerDashboard from "../pages/officer/Dashboard.jsx";
 import AdminDashboard from "../pages/admin/Dashboard.jsx";
 import TriageDashboard from "../pages/triage/Dashboard.jsx";
 import ProtectedRoute from "./ProtectedRoute.jsx";
+import AccountSettings from "../components/layout/AccountSettings.jsx";
 
 export const AppRouter = createBrowserRouter([
     
@@ -16,4 +17,8 @@ export const AppRouter = createBrowserRouter([
     { path: "/officer/dashboard", element: <ProtectedRoute allowedRole={3}><OfficerDashboard /></ProtectedRoute>},
     { path: "/admin/dashboard", element: <ProtectedRoute allowedRole={4}><AdminDashboard /></ProtectedRoute>},
     
+    //edit your account details page
+    { path: "/account-settings", element: <AccountSettings /> }
+
+
 ]);
