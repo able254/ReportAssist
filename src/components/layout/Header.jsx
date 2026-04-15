@@ -3,7 +3,7 @@ import logo from '../../assets/images/report-assist-logo.png';
 import { supabase } from '@services/supabaseClient.jsx';
 import { Link, useNavigate } from 'react-router-dom';
 import { GiPowerButton } from 'react-icons/gi';
-import { FaRegUserCircle, FaUser } from 'react-icons/fa';
+import { FaRegUserCircle, FaUserCircle } from 'react-icons/fa';
 import './Header.css';
 
 function Header() {
@@ -60,7 +60,7 @@ function Header() {
 
             <div className="user-options-dropdown">
                 <div className="user-options-holder">
-                    <FaUser className="icon-user-options"/>
+                    <FaUserCircle className="icon-user-options"/>
                 </div>
                 
                 <div className="user-options-content">
