@@ -1,0 +1,76 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    margin: 0px;
+    padding: 0px;
+    background-color: #3f8efc;
+}
+
+h1 {
+    margin-bottom: 5px;
+    font-size: 24px;
+}
+
+h2 {
+    margin-top: 5px;
+    font-weight: normal;
+    font-size: 16px;
+}
+
+.main-container {
+    background: white;
+    min-height: 100vh;
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+}
+
+.officer-sidebar {
+    background-color: #1d2f6f;
+    color: white;
+    display:flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 200px;
+    padding: 10px;
+    padding-top: 26px;
+    gap: 10px;
+}
+
+.main-content {
+    height: 100vh;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Sidebar Styles*/
+.sidebar-item {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: left;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.sidebar-item:hover {
+    background-color: #392434;
+}
+
+.sidebar-item.active {
+    background-color: #392434;
+}
+
+.icon-sidebar {
+    width: 20px;
+    height: 20px;
+}
+
+.text-sidebar {
+    padding: 0px;
+    margin: 0px;
+}

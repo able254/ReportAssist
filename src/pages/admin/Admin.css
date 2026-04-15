@@ -61,6 +61,10 @@ h2 {
     background-color: #392434;
 }
 
+.sidebar-item.active {
+    background-color: #392434;
+}
+
 .icon-sidebar {
     width: 20px;
     height: 20px;
