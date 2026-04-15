@@ -25,16 +25,21 @@ const ProtectedRoute = ({ children, allowedRole }) => {
                 setAuthenticated(true);
 
                 // 2. Check if the user has the correct role (Authorization)
-                const { data: profile, error } = await supabase
-                    .from('users')
-                    .select('role_id')
-                    .eq('id', session.user.id)
-                    .single();
-
-                if (error || !profile || profile.role_id !== allowedRole) {
-                    setAuthorized(false);
-                } else {
+                if (!allowedRole) {
+                    // If no specific role is required, any authenticated user is authorized
                     setAuthorized(true);
+                } else {
+                    const { data: profile, error } = await supabase
+                        .from('users')
+                        .select('role_id')
+                        .eq('id', session.user.id)
+                        .single();
+
+                    if (error || !profile || profile.role_id !== allowedRole) {
+                        setAuthorized(false);
+                    } else {
+                        setAuthorized(true);
+                    }
                 }
             } catch (err) {
                 console.error("Security Check Error:", err);

@@ -18,7 +18,7 @@ export const AppRouter = createBrowserRouter([
     { path: "/admin/dashboard", element: <ProtectedRoute allowedRole={4}><AdminDashboard /></ProtectedRoute>},
     
     //edit your account details page
-    { path: "/account-settings", element: <AccountSettings /> }
+    { path: "/account-settings", element: <ProtectedRoute><AccountSettings /></ProtectedRoute> }
 
 
 ]);
